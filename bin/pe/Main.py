@@ -2,15 +2,14 @@ import time
 import random
 from turtle import *
 import tkinter as tkr
-import sys
 
 def Enter():
     Vips = ["voice659", "vhba", "vipuser", 'hbaofficial', "vvoice", "voice", "v", "vip1"]
-    VN = "0.0.2.0.00rc1"
+    VN = "0.0.2.0.01"
     global VipAccess, PassGuess, Login
     VipAccess = "F"
     PassGuess = 0
-    print("--- HubBase "+VN+" (plus, May 27 2026, 21:29:57) ---")
+    print("--- HubBase "+VN+" (plus, May 29 2026, 13:37:54) ---")
     Login = input("Login (If <vip level then press enter): ").lower()
     if Login in Vips:
         Password = str(5280)
@@ -105,7 +104,7 @@ def Programm6():
         else:
             print("The dragon wakes up and eats you.")
             print("You lose!")
-    if DoorChoice == "4":
+    elif DoorChoice == "4":
         print("You see a sphinx.")
         SPass = str(random.randint(1,10))
         SGuess = input("Can you guess my number.It is inbetween 1 to 10 -- ")
@@ -357,7 +356,7 @@ def Programm18():
     blue_id = canvas1.create_rectangle(10,35,30,55, fill="blue")
     black_id = canvas1.create_rectangle(10,60,30,80, fill="black")
     white_id = canvas1.create_rectangle(10,85,30,105, fill="white")
-    
+
     def StoreNewPos(event):
         global lastX, lastY
         lastX = event.x
@@ -516,7 +515,7 @@ def Programm19():
 def Programm20():
 
     def move_tennisObject(object):
-        global batSpeed, bat, rightPressed, leftPressed, ball, canvas2, canvasWidth, ballMoveX, ballMoveY, setBatBottom, setBatTop
+        global batSpeed, bat, rightPressed, leftPressed, ball, canvas2, canvasWidth, ballMoveX, ballMoveY, setBatBottom, setBatTop, score, bounceCount
         if object == "bat":
             batMove = batSpeed * rightPressed - batSpeed * leftPressed
             (batLeft,batTop,batRight,batBottom) = canvas2.coords(bat)
@@ -534,6 +533,16 @@ def Programm20():
                 (batLeft,batTop,batRight,batBottom) = canvas2.coords(bat)
                 if ballRight > batLeft and ballLeft < batRight:
                     ballMoveY = -ballMoveY
+                    score += 1
+                    bounceCount += 1
+                    if bounceCount == 4:
+                        bounceCount = 0
+                        batSpeed += 1
+                        if ballMoveX > 0:
+                            ballMoveX += 1
+                        else:
+                            ballMoveX -= 1
+                        ballMoveY -= 1
             canvas2.move(ball, ballMoveX, ballMoveY)
         else:
             print("Such object does not exist")
@@ -544,9 +553,10 @@ def Programm20():
         window4.destroy()
 
     def check_game_over():
-        global canvasHeight
+        global canvasHeight, score
         (ballLeft, ballTop, ballRight, ballBottom) = canvas2.coords(ball)
         if ballTop > canvasHeight:
+            print("Your score was: ", str(score))
             PlayAgain = tkr.messagebox.askyesno(message="Play again?")
             if PlayAgain == True:
                 reset()
@@ -568,7 +578,7 @@ def Programm20():
             rightPressed = 0
 
     def setup_Tennis():
-        global bat, ball, windowOpen, batSpeed, rightPressed, leftPressed, canvas2, canvasWidth, canvasHeight, ballMoveX, ballMoveY, setBatBottom, setBatTop, window4
+        global bat, ball, windowOpen, batSpeed, rightPressed, leftPressed, canvas2, canvasWidth, canvasHeight, ballMoveX, ballMoveY, setBatBottom, setBatTop, window4, score, bounceCount
         canvasWidth = 750
         canvasHeight = 500
         window4 = tkr.Tk()
@@ -584,6 +594,8 @@ def Programm20():
         ballMoveY = -4
         setBatTop = canvasHeight-40
         setBatBottom = canvasHeight-30
+        score = 0
+        bounceCount = 0
         window4.protocol("WM_DELETE_WINDOW", close)
         window4.bind("<KeyPress>", on_key_press)
         window4.bind("<KeyRelease>", on_key_release)
@@ -591,11 +603,13 @@ def Programm20():
         canvas2.coords(ball, 20, setBatTop - 10, 30, setBatTop)
 
     def reset():
-        global bat, ball, windowOpen, batSpeed, rightPressed, leftPressed, canvas2, canvasWidth, ballMoveX, ballMoveY, setBatBottom, setBatTop, window4
+        global bat, ball, windowOpen, batSpeed, rightPressed, leftPressed, canvas2, canvasWidth, ballMoveX, ballMoveY, setBatBottom, setBatTop, window4, score, bounceCount
         leftPressed = 0
         rightPressed = 0
         ballMoveX = 4
         ballMoveY = -4
+        score = 0
+        bounceCount = 0
         canvas2.coords(bat, 10, setBatTop, 50, setBatBottom)
         canvas2.coords(ball, 20, setBatTop-10, 30, setBatTop)
 
@@ -611,7 +625,7 @@ def Programm20():
 
     setup_Tennis()
     play_Tennis()
-        
+
 def ProgrammP1():
 
     def Drift():
@@ -905,145 +919,24 @@ def Start():
 def Code():
     global Stop, VipAccess
     print("PE programms are enabled on default!")
-    TAEstate = "N"
-    EPstate = "N"
     if VipAccess == "T":
-        TAEstate = input("Skip procedure[Y/N] -- ").upper()
-    if TAEstate != "Y":
-        Programm1()
+        if input("Skip procedure[Y/N] -- ").upper() == "Y":
+            return
+    programs = [Programm1, Programm2, Programm3, Programm4, Programm5,
+                Programm6, Programm7, Programm8]
+    epstate = "N"
+    if VipAccess == "T":
+        epstate = input("Skip programms 9-11[Y/N] -- ").upper()
+    if epstate != "Y":
+        programs += [Programm9, Programm10, Programm11]
+    programs += [Programm12, Programm13, Programm14, Programm15,
+                 Programm16, Programm17, Programm18, Programm19, Programm20,
+                 ProgrammP1, ProgrammP2, ProgrammP3, ProgrammP4, ProgrammP5]
+    for prog in programs:
+        prog()
         CTNP()
         if Stop == 1:
-            pass
-        else:
-            Programm2()
-            CTNP()
-            if Stop == 1:
-                pass
-            else:
-                Programm3()
-                CTNP()
-                if Stop == 1:
-                    pass
-                else:
-                    Programm4()
-                    CTNP()
-                    if Stop == 1:
-                        pass
-                    else:
-                        Programm5()
-                        CTNP()
-                        if Stop == 1:
-                            pass
-                        else:
-                            Programm6()
-                            CTNP()
-                            if Stop == 1:
-                                pass
-                            else:
-                                Programm7()
-                                CTNP()
-                                if Stop == 1:
-                                    pass
-                                else:
-                                    Programm8()
-                                    if VipAccess == "T":
-                                        EPstate = input("Skip programms 9-11[Y/N] -- ").upper()
-                                    if EPstate != "Y":
-                                        CTNP()
-                                        if Stop == 1:
-                                            pass
-                                        else:
-                                            Programm9()
-                                            CTNP()
-                                            if Stop == 1:
-                                                pass
-                                            else:
-                                                Programm10()
-                                                CTNP()
-                                                if Stop == 1:
-                                                    pass
-                                                else:
-                                                    Programm11()
-                                    else:
-                                        pass
-                                    CTNP()
-                                    if Stop == 1:
-                                        pass
-                                    else:
-                                        Programm12()
-                                        CTNP()
-                                        if Stop == 1:
-                                            pass
-                                        else:
-                                            Programm13()
-                                            CTNP()
-                                            if Stop == 1:
-                                                pass
-                                            else:
-                                                Programm14()
-                                                CTNP()
-                                                if Stop == 1:
-                                                    pass
-                                                else:
-                                                    Programm15()
-                                                    CTNP()
-                                                    if Stop == 1:
-                                                        pass
-                                                    else:
-                                                        Programm16()
-                                                        CTNP()
-                                                        if Stop == 1:
-                                                            pass
-                                                        else:
-                                                            Programm17()
-                                                            CTNP()
-                                                            if Stop == 1:
-                                                                pass
-                                                            else:
-                                                                Programm18()
-                                                                CTNP()
-                                                                if Stop == 1:
-                                                                    pass
-                                                                else:
-                                                                    Programm18()
-                                                                    CTNP()
-                                                                    if Stop == 1:
-                                                                        pass
-                                                                    else:
-                                                                        Programm19()
-                                                                        CTNP()
-                                                                        if Stop == 1:
-                                                                            pass
-                                                                        else:
-                                                                            Programm20()
-                                                                            CTNP()
-                                                                            if Stop == 1:
-                                                                                pass
-                                                                            else:
-                                                                                ProgrammP1()
-                                                                                CTNP()
-                                                                                if Stop == 1:
-                                                                                    pass
-                                                                                else:
-                                                                                    ProgrammP2()
-                                                                                    CTNP()
-                                                                                    if Stop == 1:
-                                                                                        pass
-                                                                                    else:
-                                                                                        ProgrammP3()
-                                                                                        CTNP()
-                                                                                        if Stop == 1:
-                                                                                            pass
-                                                                                        else:
-                                                                                            ProgrammP4()
-                                                                                            CTNP()
-                                                                                            if Stop == 1:
-                                                                                                pass
-                                                                                            else:
-                                                                                                ProgrammP5()
-
-    else:
-        pass
+            break
     print("")
     print("Stop!")
     print("")
@@ -1150,11 +1043,11 @@ def Restart():
 
 def dev_console():
     global RA, VipAccess, Login
-    SpCm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "P1", "P2", "P3", "P4", "P5"]
+    SpCm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "P1", "P2", "P3", "P4", "P5"]
     if VipAccess == "T":
-        print("Developer console for 0.0.1.2.01")
+        print("Developer console for 0.0.2.0.01")
         line = ""
-        while line != "stop":
+        while line != "stop" and line != "close":
             line = input(Login+" >>> ").lower()
             if line in SpCm:
                 PrStart = line
@@ -1212,6 +1105,9 @@ def dev_console():
                 elif PrStart == "19":
                     Programm19()
                     Restart()
+                elif PrStart == "20":
+                    Programm20()
+                    Restart()
                 elif PrStart == "P1":
                     ProgrammP1()
                     Restart()
@@ -1229,11 +1125,5 @@ def dev_console():
                     Restart()
                 else:
                     Code()
-            elif line != "stop":
+            elif line != "stop" and line != "close":
                 print(eval(line))
-
-global RA, VipAccess
-RA = 0
-Enter()
-Code()
-dev_console()

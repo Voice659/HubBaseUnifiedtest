@@ -1,6 +1,3 @@
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'pe'))
-
 import time
 import random
 from turtle import *
@@ -8,11 +5,11 @@ import tkinter as tkr
 
 def Enter():
     Vips = ["voice659", "vhba", "vipuser", 'hbaofficial', "vvoice", "voice", "v", "vip1"]
-    VN = "0.0.2.0.01"
+    VN = "0.0.2.0.02"
     global VipAccess, PassGuess, Login
     VipAccess = "F"
     PassGuess = 0
-    print("--- HubBase "+VN+" (default, May 29 2026, 13:30:11) ---")
+    print("--- HubBase "+VN+" (default, May 31 2026, 15:06:54) ---")
     Login = input("Login (If <vip level then press enter): ").lower()
     if Login in Vips:
         Password = str(5280)
@@ -445,8 +442,9 @@ def Programm19():
                     gameOver = True
                     square.config(bg= "red")
                     print("Game over! You hit a bomb!")
-                    if PFQ == "Y":
-                        print("**Even with a cheat!!!**")
+                    if VipAccess == "T":
+                        if PFQ == "Y":
+                            print("**Even with a cheat!!!**")
                     print("Your score was:", score)
                 elif currentText == "    ":
                     square.config(bg= "brown")
@@ -532,7 +530,7 @@ def Programm20():
                 ballMoveX = -ballMoveX
             if ballMoveY < 0 and ballTop < 0:
                 ballMoveY = -ballMoveY
-            if (ballMoveX > 0 and (ballRight+ballMoveX > batLeft and ballLeft < batRight) or ballMoveX < 0 and (ballRight > batLeft and ballLeft + ballMoveX < batRight)):
+            if ballMoveY > 0 and ballBottom > setBatTop and ballBottom < setBatBottom:
                 (batLeft,batTop,batRight,batBottom) = canvas2.coords(bat)
                 if ballRight > batLeft and ballLeft < batRight:
                     ballMoveY = -ballMoveY
@@ -556,7 +554,7 @@ def Programm20():
         window4.destroy()
 
     def check_game_over():
-        global canvasHeight
+        global canvasHeight, score
         (ballLeft, ballTop, ballRight, ballBottom) = canvas2.coords(ball)
         if ballTop > canvasHeight:
             print("Your score was: ", str(score))
@@ -655,144 +653,30 @@ def PStop():
 
 def Code():
     global Stop, VipAccess, PlPr
-    PlPr = input("Do you want to enable PE programms?(requires HubBasePE => 0.0.1.0.10)[Y/N] -- ").upper()
+    PlPr = input("Do you want to enable PE programms?(requires HubBasePE >= 0.0.1.0.10)[Y/N] -- ").upper()
     if PlPr == "Y":
-        import Main as PEMain
-    TAEstate = "N"
-    EPstate = "N"
+        from bin.HubBasePE import Main
     if VipAccess == "T":
-        TAEstate = input("Skip procedure[Y/N] -- ").upper()
-    if TAEstate != "Y":
-        Programm1()
+        if input("Skip procedure[Y/N] -- ").upper() == "Y":
+            return
+    programs = [Programm1, Programm2, Programm3, Programm4, Programm5,
+                Programm6, Programm7, Programm8]
+    epstate = "N"
+    if VipAccess == "T":
+        epstate = input("Skip programms 9-11[Y/N] -- ").upper()
+    if epstate != "Y":
+        programs += [Programm9, Programm10, Programm11]
+    programs += [Programm12, Programm13, Programm14, Programm15,
+                 Programm16, Programm17, Programm18, Programm19, Programm20]
+    if PlPr == "Y":
+        print("PE programms next! (If you chose N then they won`t load!)")
+        programs += [Main.ProgrammP1, Main.ProgrammP2, Main.ProgrammP3,
+                     Main.ProgrammP4, Main.ProgrammP5]
+    for prog in programs:
+        prog()
         CTNP()
         if Stop == 1:
-            pass
-        else:
-            Programm2()
-            CTNP()
-            if Stop == 1:
-                pass
-            else:
-                Programm3()
-                CTNP()
-                if Stop == 1:
-                    pass
-                else:
-                    Programm4()
-                    CTNP()
-                    if Stop == 1:
-                        pass
-                    else:
-                        Programm5()
-                        CTNP()
-                        if Stop == 1:
-                            pass
-                        else:
-                            Programm6()
-                            CTNP()
-                            if Stop == 1:
-                                pass
-                            else:
-                                Programm7()
-                                CTNP()
-                                if Stop == 1:
-                                    pass
-                                else:
-                                    Programm8()
-                                    if VipAccess == "T":
-                                        EPstate = input("Skip programms 9-11[Y/N] -- ").upper()
-                                    if EPstate != "Y":
-                                        CTNP()
-                                        if Stop == 1:
-                                            pass
-                                        else:
-                                            Programm9()
-                                            CTNP()
-                                            if Stop == 1:
-                                                pass
-                                            else:
-                                                Programm10()
-                                                CTNP()
-                                                if Stop == 1:
-                                                    pass
-                                                else:
-                                                    Programm11()
-                                    else:
-                                        pass
-                                    CTNP()
-                                    if Stop == 1:
-                                        pass
-                                    else:
-                                        Programm12()
-                                        CTNP()
-                                        if Stop == 1:
-                                            pass
-                                        else:
-                                            Programm13()
-                                            CTNP()
-                                            if Stop == 1:
-                                                pass
-                                            else:
-                                                Programm14()
-                                                CTNP()
-                                                if Stop == 1:
-                                                    pass
-                                                else:
-                                                    Programm15()
-                                                    CTNP()
-                                                    if Stop == 1:
-                                                        pass
-                                                    else:
-                                                        Programm16()
-                                                        CTNP()
-                                                        if Stop == 1:
-                                                            pass
-                                                        else:
-                                                            Programm17()
-                                                            CTNP()
-                                                            if Stop == 1:
-                                                                pass
-                                                            else:
-                                                                Programm18()
-                                                                CTNP()
-                                                                if Stop == 1:
-                                                                    pass
-                                                                else:
-                                                                      Programm19()
-                                                                      CTNP()
-                                                                      if Stop == 1:
-                                                                          pass
-                                                                      else:
-                                                                          Programm20()
-                                                                          print("PE programms next! (If you chose N then they won`t load!)")
-                                                                      CTNP()
-                                                                      if Stop == 1:
-                                                                          pass
-                                                                      else:
-                                                                          if PlPr == "Y":
-                                                                              PEMain.ProgrammP1()
-                                                                              CTNP()
-                                                                              if Stop == 1:
-                                                                                  pass
-                                                                              else:
-                                                                                  PEMain.ProgrammP2()
-                                                                                  CTNP()
-                                                                                  if Stop == 1:
-                                                                                      pass
-                                                                                  else:
-                                                                                      PEMain.ProgrammP3()
-                                                                                      CTNP()
-                                                                                      if Stop == 1:
-                                                                                          pass
-                                                                                      else:
-                                                                                          PEMain.ProgrammP4()
-                                                                                          CTNP()
-                                                                                          if Stop == 1:
-                                                                                              pass
-                                                                                          else:
-                                                                                              PEMain.ProgrammP5()
-    else:
-        pass
+            break
     print("")
     print("Stop!")
     print("")
@@ -813,16 +697,15 @@ def Code():
         Restart()
 
 def Restart():
-    global PlPr
-    if PlPr == "Y":
-        import Main as PEMain
-    global E_C
+    global PlPr, E_C
     if VipAccess == "F":
         Code()
     else:
         Exit_Chioce = E_C = input("Do you want to exit the programm?[Y/N] -- ").upper()
         if E_C == "N":
             PrStart = input("What programm to launch? -- ")
+            if PlPr == "Y":
+                from bin.HubBasePE import Main
             if PrStart == "2":
                 Programm2()
                 Restart()
@@ -881,19 +764,19 @@ def Restart():
                 Programm20()
                 Restart()
             elif PrStart == "P1":
-                PEMain.ProgrammP1()
+                Main.ProgrammP1()
                 Restart()
             elif PrStart == "P2":
-                PEMain.ProgrammP2()
+                Main.ProgrammP2()
                 Restart()
             elif PrStart == "P3":
-                PEMain.ProgrammP3()
+                Main.ProgrammP3()
                 Restart()
             elif PrStart == "P4":
-                PEMain.ProgrammP4()
+                Main.ProgrammP4()
                 Restart()
             elif PrStart == "P5":
-                PEMain.ProgrammP5()
+                Main.ProgrammP5()
                 Restart()
             else:
                 Code()
@@ -901,10 +784,12 @@ def Restart():
             pass
 
 def dev_console():
-    global RA, VipAccess, Login
+    global RA, VipAccess, Login, VN, PlPr
+    if PlPr == "Y":
+        from bin.HubBasePE import Main
     SpCm = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "P1", "P2", "P3", "P4", "P5"]
     if VipAccess == "T":
-        print("Developer console for 0.0.2.0.01")
+        print("Developer console for "+VN)
         line = ""
         while line != "stop" and line != "close":
             line = input(Login+" >>> ").lower()
@@ -968,27 +853,21 @@ def dev_console():
                     Programm20()
                     Restart()
                 elif PrStart == "P1":
-                    PEMain.ProgrammP1()
+                    Main.ProgrammP1()
                     Restart()
                 elif PrStart == "P2":
-                    PEMain.ProgrammP2()
+                    Main.ProgrammP2()
                     Restart()
                 elif PrStart == "P3":
-                    PEMain.ProgrammP3()
+                    Main.ProgrammP3()
                     Restart()
                 elif PrStart == "P4":
-                    PEMain.ProgrammP4()
+                    Main.ProgrammP4()
                     Restart()
                 elif PrStart == "P5":
-                    PEMain.ProgrammP5()
+                    Main.ProgrammP5()
                     Restart()
                 else:
                     Code()
             elif line != "stop" and line != "close":
                 print(eval(line))
-
-global RA, VipAccess
-RA = 0
-Enter()
-Code()
-dev_console()
