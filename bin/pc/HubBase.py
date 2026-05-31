@@ -3,6 +3,8 @@ import random
 from turtle import *
 import tkinter as tkr
 
+RA = 0
+
 def Enter():
     Vips = ["voice659", "vhba", "vipuser", 'hbaofficial', "vvoice", "voice", "v", "vip1"]
     VN = "0.0.2.0.02"

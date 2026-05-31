@@ -8,8 +8,6 @@ print(LaunchOptions)
 LaunchOptionInput = int(input("What to launch?[1,2,3] -- "))
 LaunchOptionInput = LaunchOptionsL[LaunchOptionInput-1]
 if LaunchOptionInput == "hb":
-    global RA, VipAccess
-    RA = 0
     Enter()
     Code()
     dev_console()
