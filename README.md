@@ -14,7 +14,7 @@ Monorepo for all HubBase editions under [HubBase Authority](https://github.com/H
 | `bin/pc/` | Mirror of `bin/HB/HubBase.py` (backward compat) |
 | `bin/pe/` | Mirror of `bin/HubBasePE/Main.py` (backward compat) |
 | `bin/je/` | Original JS source files (`HB-JS.js`, `Extra-Code.js`) |
-| `website/` | HubBase Authority website (HTML, CSS, JS) |
+| `website/` (on `website` branch) | HubBase Authority website (HTML, CSS, JS) |
 | `docs/` | Documentation (CODE_OF_CONDUCT, CONTRIBUTING, SECURITY) |
 
 ## Quick Start
