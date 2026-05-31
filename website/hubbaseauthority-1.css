@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #444444;
+}
+
+.pageheader .sitename {
+  min-width: 550px;
+  margin: 0 auto 8px;
+  font-family: "Georgia", serif;
+  text-align: center;
+  font-weight: normal;
+  font-size: 56px;
+  line-height: 64px;
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 12px;
+  background: #3282F6;
+}
+
+
+.startpagemain .sitename {
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+}
+
+.section-start {
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 12px;
+}
+
+.site-footer {
+  min-width: 550px;
+  background-color: #847462;
+  color: #ffffff;
+}
+
+.site-footer .container {
+  text-align: center;
+}
+
+.site-footer p {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20px;
+}
+
+.site-footer .navigation p {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  padding: 0 20px;
+}
+
+.blogpagemain ins {
+	color: #ff00ff;
+}
+
+.l {
+	text-align: left;
+}
+
+.l .topage nav{
+	font-size: 16px;
+}
+
+.bp {
+	padding-bottom: 12px;
+}
+
+.ml {
+	margin-left: 30px;
+}
