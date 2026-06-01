@@ -1,6 +1,6 @@
 # HubBase All Platforms (hbap-test)
 
-Monorepo for all HubBase editions under [HubBase Authority](https://github.com/HubBase-Authority).
+Monorepo for all HubBase editions under [HubBase Authority](https://github.com/HubBase-Authority). Made by AI.
 
 ## Structure
 
